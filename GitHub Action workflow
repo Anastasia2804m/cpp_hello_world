@@ -1,0 +1,18 @@
+name: Test with Install
+run-name: Test with Install
+on:push
+jobs:
+integration_testing:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout
+uses: actions/checkout@v3
+- name: Install requirements
+run: pip install -r requirements.txt
+- name: Run app
+run: python3 ./src/app/app.py &
+- name: Run Unit Tests
+run: |
+chmod +x ./test/test.sh
+./test/test.sh
+shell: bash 
